@@ -5,7 +5,9 @@ class Classification {
     }
 }
 
-class Animal {
+interface Create();
+
+abstract class Animal implements Create {
     private String name;
     private String DoB;
 
@@ -26,7 +28,7 @@ class Animal {
     }
 }
 
-class HouseAnimal extends Animal {
+abstract class HouseAnimal extends Animal {
     public void Affection() {
         System.out.println(getName() + " проявляет ласку!");
     }
@@ -36,6 +38,12 @@ class Cat extends HouseAnimal {
     public Cat(String name, String DoB) {
         setName(name);
         setDoB(DoB);
+    }
+
+    @Override
+    public Cat Create(String name, String DoB) {
+        Cat name = new Cat(String name, String DoB)
+        return name;
     }
 
     private void Purr() {
@@ -65,7 +73,7 @@ class Hamster extends HouseAnimal {
     }
 }
 
-class PackAnimal extends Animal {
+abstract class PackAnimal extends Animal {
     private void Work() {
         System.out.println(getName() + " работает!");
     }
