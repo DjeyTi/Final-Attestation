@@ -1,30 +1,55 @@
 class Classification {
     public static void main(String[] args) {
-        Cat Barsik = new Cat("Барсик", "28.01.2021");
-        Barsik.Affection();
+        Cat NewCat = new Cat("Барсик", "27.10.19");
+        NewCat.getInfo();
+        NewCat.Purr();
+        NewCat.Affection();
+        NewCat.learnCommands("Лежать");
+        System.out.println(NewCat.getCommands());
+
     }
 }
 
-interface Create();
+interface Comands {                                             // Создал чисто для того, чтобы вспомнить интерфейсы
+    public void getInfo();
+}
 
-abstract class Animal implements Create {
-    private String name;
-    private String DoB;
+abstract class Animal implements Comands {
+    private String name = null;
+    private String DoB = null;
+    private String Commands = null;
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;        
     }
 
-    public void setDoB(String DoB) {
+    protected void setDoB(String DoB) {
         this.DoB = DoB;
     }
 
-    public String getName() {
+    protected void setCommands(String Command) {
+        this.Commands = Command;
+    }
+
+    protected String getName() {
         return name;
     }
 
-    public String getDoB() {
+    protected String getDoB() {
         return DoB;
+    }
+
+    protected String getCommands() {
+        return Commands;
+    }
+
+    public void learnCommands(String Command) {
+        if (getCommands() == null) {
+            setCommands(Command);
+        } else {
+            String NewCommands = getCommands() + " " + Command;;
+            setCommands(NewCommands.replace("null", "").trim());
+        }
     }
 }
 
@@ -35,79 +60,104 @@ abstract class HouseAnimal extends Animal {
 }
 
 class Cat extends HouseAnimal {
-    public Cat(String name, String DoB) {
+
+    protected Cat(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
     @Override
-    public Cat Create(String name, String DoB) {
-        Cat name = new Cat(String name, String DoB)
-        return name;
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
     }
 
-    private void Purr() {
+    public void Purr() {
         System.out.println(getName() + " мурлычит!");
     }
 }
 
 class Dog extends HouseAnimal {
-    public Dog(String name, String DoB) {
+    protected Dog(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
-    private void Guard() {
+    @Override
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
+    }
+
+    public void Guard() {
         System.out.println(getName() + " охраняет собственность!");
     }
 }
 
 class Hamster extends HouseAnimal {
-    public Hamster(String name, String DoB) {
+    protected Hamster(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
-    private void Eat() {
+    @Override
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
+    }
+
+    public void Eat() {
         System.out.println(getName() + " ест!");
     }
 }
 
 abstract class PackAnimal extends Animal {
-    private void Work() {
+    protected void Work() {
         System.out.println(getName() + " работает!");
     }
 }
 
 class Horse extends PackAnimal {
-    public Horse(String name, String DoB) {
+    protected Horse(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
-    private void Run() {
+    @Override
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
+    }
+
+    public void Run() {
         System.out.println(getName() + " скачет!");
     }
 }
 
 class Donkey extends PackAnimal {
-    public Donkey(String name, String DoB) {
+    protected Donkey(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
-    private void Move() {
+    @Override
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
+    }
+
+    public void Move() {
         System.out.println(getName() + " переносит груз!");
     }
 }
 
 class Camel extends PackAnimal {
-    public Camel(String name, String DoB) {
+    protected Camel(String name, String DoB) {
         setName(name);
         setDoB(DoB);
     }
 
-    private void Drink() {
+    @Override
+    public void getInfo() {
+        System.out.println("Дата рождения: " + getDoB() + "\nИмя: " + getName());
+    }
+
+    public void Drink() {
         System.out.println(getName() + " пьёт воду!");
     }
 }
